@@ -1,0 +1,19 @@
+{
+  "id": "hobeomlee/house-price-prediction-using-post-lasso",
+  "id_no": 45315549,
+  "title": "House Price Prediction using Post-Lasso",
+  "code_file": "house-price-prediction-using-post-lasso.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": [],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": [
+    "house-prices-advanced-regression-techniques"
+  ],
+  "model_sources": []
+}

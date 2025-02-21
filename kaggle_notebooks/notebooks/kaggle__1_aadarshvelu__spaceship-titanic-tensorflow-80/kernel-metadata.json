@@ -1,0 +1,21 @@
+{
+  "id": "aadarshvelu/spaceship-titanic-tensorflow-80",
+  "id_no": 50073406,
+  "title": "Spaceship Titanic - Tensorflow .80+ \ud83d\udd25",
+  "code_file": "spaceship-titanic-tensorflow-80.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [
+    "gpu"
+  ],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": [
+    "spaceship-titanic"
+  ],
+  "model_sources": []
+}

@@ -1,0 +1,25 @@
+{
+  "id": "ctrnngtrung/reduce-complexity-for-house-prices-predictions",
+  "id_no": 42388053,
+  "title": "Reduce complexity for House Prices Predictions ",
+  "code_file": "reduce-complexity-for-house-prices-predictions.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [
+    "feature engineering",
+    "pandas",
+    "ensembling",
+    "data visualization",
+    "data cleaning"
+  ],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": [
+    "house-prices-advanced-regression-techniques"
+  ],
+  "model_sources": []
+}

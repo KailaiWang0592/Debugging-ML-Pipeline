@@ -1,0 +1,19 @@
+{
+  "id": "chanchal24/house-prices-prediction-detailed-eda-10-model",
+  "id_no": 50709174,
+  "title": "House Prices Prediction|Detailed EDA & 10 Model",
+  "code_file": "house-prices-prediction-detailed-eda-10-model.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": false,
+  "keywords": [],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": [
+    "house-prices-advanced-regression-techniques"
+  ],
+  "model_sources": []
+}

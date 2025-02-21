@@ -1,0 +1,19 @@
+{
+  "id": "ibkya12/17-0-9243-house-price-pred-w-xgboost",
+  "id_no": 58066032,
+  "title": "[\ud83d\udd25 %17 / 0.9243 \ud83d\udd25] House Price Pred /w XGBoost",
+  "code_file": "17-0-9243-house-price-pred-w-xgboost.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": [],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": [
+    "house-prices-advanced-regression-techniques"
+  ],
+  "model_sources": []
+}

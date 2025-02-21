@@ -1,0 +1,24 @@
+{
+  "id": "adends/spaceship-titanic-competition-with-ensemble-models",
+  "id_no": 52611933,
+  "title": "Spaceship Titanic Competition with Ensemble Models",
+  "code_file": "spaceship-titanic-competition-with-ensemble-models.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "keywords": [
+    "beginner",
+    "random forest",
+    "binary classification",
+    "english"
+  ],
+  "dataset_sources": [],
+  "kernel_sources": [],
+  "competition_sources": [
+    "spaceship-titanic"
+  ],
+  "model_sources": []
+}
