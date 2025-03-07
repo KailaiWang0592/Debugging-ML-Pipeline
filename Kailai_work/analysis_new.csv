@@ -1,0 +1,126 @@
+Notebook Name,Category,Function,Uses Default Parameters?,Custom Parameters,All Parameters,Other Parameters
+spaceship-titanic-tensorflow-80.ipynb,Feature Selection,drop,No,"columns=['PassengerId', 'Name'], axis=1, inplace=True","labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","ds.drop(columns=[""PassengerId"", ""Name""], axis=1, inplace=True)"
+spaceship-titanic-tensorflow-80.ipynb,Feature Selection,drop,No,"columns=['PassengerId', 'Name'], axis=1, inplace=True","labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","ts.drop(columns=[""PassengerId"", ""Name""], axis=1, inplace=True)"
+spaceship-titanic-tensorflow-80.ipynb,Feature Selection,dropna,No,inplace=True,"axis=0, how='any', thresh=None, subset=None, inplace=False",spe.dropna(inplace=True)
+spaceship-titanic-tensorflow-80.ipynb,Feature Engineering,LabelEncoder,Yes,,No parameters required for initialization,ds[col] = LabelEncoder().fit_transform(ds[col])
+spaceship-titanic-tensorflow-80.ipynb,Feature Engineering,LabelEncoder,Yes,,No parameters required for initialization,ts[col] = LabelEncoder().fit_transform(ts[col])
+spaceship-titanic-tensorflow-80.ipynb,Feature Engineering,MinMaxScaler,Yes,,"feature_range=(0, 1), copy=True, clip=False","ds = pd.DataFrame(MinMaxScaler().fit_transform(ds), columns=ds.columns)"
+spaceship-titanic-tensorflow-80.ipynb,Feature Engineering,MinMaxScaler,Yes,,"feature_range=(0, 1), copy=True, clip=False","ts = pd.DataFrame(MinMaxScaler().fit_transform(ts), columns=ts.columns)"
+spaceship-titanic-tensorflow-80.ipynb,Feature Addition,Feature Addition,Yes,,N/A,"ss[""Transported""] = yPred"
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['CryoSleep'] = data['CryoSleep'].map(lambda x: 1 if x else 0)
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,"data['Transported'] = data['Transported'].map({True: 1, False: 0})"
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['Age'] = data['Age'].astype(int)
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['Total_Cost'] = data['RoomService'] + data['FoodCourt'] + data['ShoppingMall'] + data['Spa'] + data['VRDeck']
+spaceship-titanic.ipynb,Feature Engineering,LabelEncoder,Yes,,No parameters required for initialization,le = LabelEncoder()
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['HomePlanet+Destination'] = data['HomePlanet'] + '_' + data['Destination']
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['HomePlanet+Destination_code'] = le.fit_transform(data['HomePlanet+Destination'])
+spaceship-titanic.ipynb,Feature Engineering,LabelEncoder,Yes,,No parameters required for initialization,le = LabelEncoder()
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['Desk'] = le.fit_transform(data['Desk'])
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['Side'] = le.fit_transform(data['Side'])
+spaceship-titanic.ipynb,Feature Engineering,LabelEncoder,Yes,,No parameters required for initialization,le = LabelEncoder()
+spaceship-titanic.ipynb,Feature Engineering,LabelEncoder,Yes,,No parameters required for initialization,le = LabelEncoder()
+spaceship-titanic.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,data['CryoSleep'] = data['CryoSleep'].map(lambda x: 1 if x else 0)
+spaceship-titanic.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,"data['Transported'] = data['Transported'].map({True: 1, False: 0})"
+spaceship-titanic.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,data['Age'] = data['Age'].astype(int)
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,"data['Surname'] = data['Name'].dropna().str.split(' ', expand = True)[1]"
+spaceship-titanic.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,data['Total_Cost'] = data['RoomService'] + data['FoodCourt'] + data['ShoppingMall'] + data['Spa'] + data['VRDeck']
+spaceship-titanic.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,data['HomePlanet+Destination'] = data['HomePlanet'] + '_' + data['Destination']
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,"data['Zero_Cost'] = np.where(data['Total_Cost'] == 0, 1, 0)"
+spaceship-titanic.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,data['HomePlanet+Destination_code'] = le.fit_transform(data['HomePlanet+Destination'])
+spaceship-titanic.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,data['Desk'] = le.fit_transform(data['Desk'])
+spaceship-titanic.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,data['Side'] = le.fit_transform(data['Side'])
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['Group_Size'] = data['Group_Num'].apply(lambda x: data['Group_Num'].value_counts()[x])
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,"data['Solo'] = np.where(data['Group_Size'] == 1, 1, 0)"
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['Num'] = data['Num'].astype(int)
+spaceship-titanic.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,data['Num'] = data['Num'].map(lambda x: np.nan if x == 9999 else x)
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['Num_code_1'] = (data['Num']<300).astype(int)   # one-hot encoding
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['Num_code_2'] =((data['Num']>=300) & (data['Num']<600)).astype(int)
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['Num_code_3'] =((data['Num']>=600) & (data['Num']<900)).astype(int)
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['Num_code_4'] =((data['Num']>=900) & (data['Num']<1200)).astype(int)
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['Num_code_5'] =((data['Num']>=1200) & (data['Num']<1500)).astype(int)
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['Num_code_6'] =((data['Num']>=1500) & (data['Num']<1800)).astype(int)
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,data['Num_code_7'] =(data['Num']>=1800).astype(int)
+spaceship-titanic-with-randomforestclassifier.ipynb,Feature Engineering,SimpleImputer,No,strategy='median',"missing_values=nan, strategy=mean, fill_value=None, copy=True, add_indicator=False, keep_empty_features=False",imputer = SimpleImputer(strategy='median')
+spaceship-titanic-with-randomforestclassifier.ipynb,Feature Engineering,get_dummies,No,columns=categorical_cols,"data, prefix=None, prefix_sep='_', dummy_na=False, columns=None, sparse=False, drop_first=False, dtype=None","train = pd.get_dummies(train, columns=categorical_cols)"
+spaceship-titanic-with-randomforestclassifier.ipynb,Feature Addition,Feature Addition,Yes,,N/A,"train['Total_Billed'] = train[['RoomService', 'FoodCourt', 'ShoppingMall', 'Spa', 'VRDeck']].sum(axis=1)"
+spaceship-titanic-with-randomforestclassifier.ipynb,Feature Selection,drop,No,axis=1,"labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","X = train.drop(['PassengerId', 'Name', 'Cabin', 'Transported'], axis=1)"
+spaceship-titanic-with-randomforestclassifier.ipynb,Feature Engineering,fillna,No,inplace=True,"value=None, method=None, axis=None, inplace=False, limit=None, downcast=None","X.fillna(0, inplace=True)"
+spaceship-titanic-with-randomforestclassifier.ipynb,Feature Engineering,get_dummies,No,columns=categorical_cols,"data, prefix=None, prefix_sep='_', dummy_na=False, columns=None, sparse=False, drop_first=False, dtype=None","test = pd.get_dummies(test, columns=categorical_cols)"
+spaceship-titanic-with-randomforestclassifier.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,"test['Total_Billed'] = test[['RoomService', 'FoodCourt', 'ShoppingMall', 'Spa', 'VRDeck']].sum(axis=1)"
+spaceship-titanic-eda-predictions.ipynb,Feature Selection,drop,No,axis=1,"labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","df_train = df_train.drop('Name', axis=1)"
+spaceship-titanic-eda-predictions.ipynb,Feature Selection,drop,No,axis=1,"labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","df_test = df_test.drop('Name', axis=1)"
+spaceship-titanic-eda-predictions.ipynb,Feature Addition,Feature Addition,Yes,,N/A,df_train['Passenger_Groups'] = df_train['PassengerId'].apply(lambda x: x.split('_')[1]).astype(int)
+spaceship-titanic-eda-predictions.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,df_test['Passenger_Groups'] = df_test['PassengerId'].apply(lambda x: x.split('_')[1]).astype(int)
+spaceship-titanic-eda-predictions.ipynb,Feature Addition,Feature Addition,Yes,,N/A,df_train['Cabin_Num'] = df_train['Cabin_Num'].astype('int')
+spaceship-titanic-eda-predictions.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,df_test['Cabin_Num'] = df_test['Cabin_Num'].astype('int')
+spaceship-titanic-eda-predictions.ipynb,Feature Addition,Feature Addition,Yes,,N/A,"df_train['AmenitiesTotal'] = df_train[['RoomService', 'FoodCourt', 'ShoppingMall', 'Spa', 'VRDeck']].sum(axis=1)"
+spaceship-titanic-eda-predictions.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,"df_test['AmenitiesTotal'] = df_test[['RoomService', 'FoodCourt', 'ShoppingMall', 'Spa', 'VRDeck']].sum(axis=1)"
+spaceship-titanic-eda-predictions.ipynb,Feature Addition,Feature Addition,Yes,,N/A,df_train['Age_Group'] = create_age_groups(df_train['Age'])
+spaceship-titanic-eda-predictions.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,df_test['Age_Group'] = create_age_groups(df_test['Age'])
+spaceship-titanic-eda-predictions.ipynb,Feature Selection,drop,No,axis=1,"labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","df_train = df_train.drop(['PassengerId', 'Cabin'], axis=1)"
+spaceship-titanic-eda-predictions.ipynb,Feature Selection,drop,No,axis=1,"labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","df_test = df_test.drop('Cabin', axis=1)"
+spaceship-titanic-eda-predictions.ipynb,Feature Selection,drop,No,axis=1,"labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","df_train = df_train.drop('Cabin_Num', axis=1)"
+spaceship-titanic-eda-predictions.ipynb,Feature Selection,Drop column 'Cabin_Num',No,action=Drop column 'Cabin_Num',N/A,"df_train = df_train.drop('Cabin_Num', axis=1)"
+spaceship-titanic-eda-predictions.ipynb,Feature Selection,drop,No,axis=1,"labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","df_test = df_test.drop('Cabin_Num', axis=1)"
+spaceship-titanic-eda-predictions.ipynb,Feature Addition,Feature Addition,Yes,,N/A,df_train['Cabin_Num_Group'] = create_cabin_groups(df_train['Cabin_Num'])
+spaceship-titanic-eda-predictions.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,df_test['Cabin_Num_Group'] = create_cabin_groups(df_test['Cabin_Num'])
+spaceship-titanic-eda-predictions.ipynb,Feature Engineering,LabelEncoder,Yes,,No parameters required for initialization,label_encoder = LabelEncoder()
+spaceship-titanic-eda-predictions.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,df_train['Age_Group'] = label_encoder.fit_transform(df_train['Age_Group'].map(Age_Group_dic))
+spaceship-titanic-eda-predictions.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,df_test['Age_Group'] = label_encoder.transform(df_test['Age_Group'].map(Age_Group_dic))
+spaceship-titanic-eda-predictions.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,df_train['Cabin_Num_Group'] = label_encoder.fit_transform(df_train['Cabin_Num_Group'].map(Cabin_Num_Group_dic))
+spaceship-titanic-eda-predictions.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,df_test['Cabin_Num_Group'] = label_encoder.transform(df_test['Cabin_Num_Group'].map(Cabin_Num_Group_dic))
+spaceship-titanic-eda-predictions.ipynb,Feature Addition,Feature Addition,Yes,,N/A,"df_train['Transported'] = df_train['Transported'].replace({True: 1, False: 0})"
+spaceship-titanic-eda-predictions.ipynb,Feature Engineering,get_dummies,No,columns=nominal_cols,"data, prefix=None, prefix_sep='_', dummy_na=False, columns=None, sparse=False, drop_first=False, dtype=None","df_train = pd.get_dummies(df_train, columns=nominal_cols)"
+spaceship-titanic-eda-predictions.ipynb,Feature Engineering,get_dummies,No,columns=nominal_cols,"data, prefix=None, prefix_sep='_', dummy_na=False, columns=None, sparse=False, drop_first=False, dtype=None","df_test = pd.get_dummies(df_test, columns=nominal_cols)"
+spaceship-titanic-eda-predictions.ipynb,Feature Selection,drop,No,axis=1,"labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","X = df_train.drop('Transported',axis=1)"
+spaceship-titanic-eda-predictions.ipynb,Feature Selection,Drop column 'Transported',No,action=Drop column 'Transported',N/A,"X = df_train.drop('Transported',axis=1)"
+spaceship-titanic-eda-predictions.ipynb,Feature Engineering,StandardScaler,Yes,,"copy=True, with_mean=True, with_std=True",scaler = StandardScaler()
+spaceship-titanic-eda-predictions.ipynb,Feature Selection,drop,No,axis=1,"labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","df_test.drop('PassengerId', axis=1)"
+spaceship-titanic-eda-predictions.ipynb,Feature Addition,Feature Addition,Yes,,N/A,output['Transported'] = predictions > 0.5
+spaceship-titanic-competition-with-ensemble-models.ipynb,Feature Selection,drop,No,"axis=1, inplace=True","labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","df.drop(['Cabin', 'Name'], axis=1, inplace=True)"
+spaceship-titanic-competition-with-ensemble-models.ipynb,Feature Addition,Feature Addition,Yes,,N/A,"df['total'] = df[['RoomService', 'FoodCourt', 'ShoppingMall', 'Spa', 'VRDeck']].sum(axis=1)"
+spaceship-titanic-competition-with-ensemble-models.ipynb,Feature Addition,Feature Addition,Yes,,N/A,"df['AgeBin'] = pd.qcut(df['Age'].fillna(df['Age'].mode()[0]), q=5, labels=False)"
+spaceship-titanic-competition-with-ensemble-models.ipynb,Feature Selection,drop,No,"axis=1, inplace=True","labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","df.drop(['Transported'], axis=1, inplace=True)"
+spaceship-titanic-competition-with-ensemble-models.ipynb,Feature Selection,drop,No,"axis=1, inplace=True","labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","df.drop(['VIP_1'], axis=1,inplace=True)"
+spaceship-titanic-competition-with-ensemble-models.ipynb,Feature Engineering,MinMaxScaler,Yes,,"feature_range=(0, 1), copy=True, clip=False","('scale', MinMaxScaler()),"
+spaceship-titanic-competition-with-ensemble-models.ipynb,Feature Selection,drop,No,"axis=1, inplace=True","labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","df_test.drop(['Cabin', 'Name'], axis=1, inplace=True)"
+spaceship-titanic-competition-with-ensemble-models.ipynb,Feature Selection,drop,No,"axis=1, inplace=True","labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","df_test.drop(['VIP_1'], axis=1,inplace=True)"
+spaceship-titanic-competition-with-ensemble-models.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,"df_test['total'] = df_test[['RoomService', 'FoodCourt', 'ShoppingMall', 'Spa', 'VRDeck']].sum(axis=1)"
+spaceship-titanic-competition-with-ensemble-models.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,"df_test['AgeBin'] = pd.qcut(df_test['Age'].fillna(df_test['Age'].mode()[0]), q=5, labels=False)"
+spaceship-titanic-competition-with-ensemble-models.ipynb,Feature Addition,Feature Addition,Yes,,N/A,df_test['LastName_11'] = 0
+spaceship-titanic-competition-with-ensemble-models.ipynb,Feature Addition,Feature Addition,Yes,,N/A,df_test['Transported'] = preds
+spaceship-titanic.ipynb,Feature Selection,drop,No,columns=['Transported'],"labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'",X= data.drop(columns= ['Transported'])
+spaceship-titanic.ipynb,Feature Engineering,ColumnTransformer,No,"transformers=[('num', numeric_transformer, numeric_features), ('cat', categorical_transformer, categorical_features), ('bool', boolean_transformer, boolean_features)]",,preprocessor = ColumnTransformer(
+spaceship-titanic.ipynb,Feature Engineering,SimpleImputer,No,strategy='mean',"missing_values=nan, strategy=mean, fill_value=None, copy=True, add_indicator=False, keep_empty_features=False","('imputer', SimpleImputer(strategy='mean')),"
+spaceship-titanic.ipynb,Feature Engineering,StandardScaler,Yes,,"copy=True, with_mean=True, with_std=True","('scaler', StandardScaler())])"
+spaceship-titanic.ipynb,Feature Engineering,SimpleImputer,No,strategy='most_frequent',"missing_values=nan, strategy=mean, fill_value=None, copy=True, add_indicator=False, keep_empty_features=False","('imputer', SimpleImputer(strategy='most_frequent')),"
+spaceship-titanic.ipynb,Feature Engineering,OneHotEncoder,No,handle_unknown='ignore',"categories=auto, drop=None, sparse_output=True, dtype=<class 'numpy.float64'>, handle_unknown=error, min_frequency=None, max_categories=None, feature_name_combiner=concat","('onehot', OneHotEncoder(handle_unknown='ignore'))])"
+spaceship-titanic.ipynb,Feature Engineering,SimpleImputer,No,strategy='most_frequent',"missing_values=nan, strategy=mean, fill_value=None, copy=True, add_indicator=False, keep_empty_features=False","('imputer', SimpleImputer(strategy='most_frequent')) ,"
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,"data['Group'] = data['PassengerId'].str.split('_' , expand = True)[0].astype(int)"
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,X_train['num'] = X_train['num'].astype(int)
+spaceship-titanic.ipynb,Feature Engineering,Feature Engineering,Yes,,N/A,testing['num']=testing['num'].astype(int)
+spaceship-titanic.ipynb,Feature Selection,drop,No,columns=['Transported'],"labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'",X_train = X_train.drop(columns=['Transported'])
+spaceship-titanic.ipynb,Feature Selection,Drop column 'Transported',No,action=Drop column 'Transported',N/A,X_train = X_train.drop(columns=['Transported'])
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,z['Transported'] = y_train.to_list()
+spaceship-titanic-classification.ipynb,Feature Engineering,LabelEncoder,Yes,,No parameters required for initialization,encoder = LabelEncoder()
+spaceship-titanic-classification.ipynb,Feature Engineering,LabelEncoder,Yes,,No parameters required for initialization,encoder = LabelEncoder()
+spaceship-titanic-classification.ipynb,Feature Selection,drop,No,axis=1,"labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","X_train = train_data.drop(['Transported','PassengerId','Name','ShoppingMall'], axis=1)"
+spaceship-titanic-classification.ipynb,Feature Engineering,StandardScaler,Yes,,"copy=True, with_mean=True, with_std=True",sc = StandardScaler()
+spaceship-titanic-classification.ipynb,Feature Addition,Feature Addition,Yes,,N/A,submission['Transported'] = submission['Transported'].astype(bool)
+spaceship-titanic-ml.ipynb,Feature Selection,drop,No,"columns=['HomePlanet', 'CryoSleep', 'Cabin', 'Destination', 'VIP', 'Name'], axis=1, inplace=True","labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","train.drop(columns=['HomePlanet','CryoSleep','Cabin','Destination','VIP','Name'],axis=1,inplace=True)"
+spaceship-titanic-ml.ipynb,Feature Selection,drop,No,"columns=['HomePlanet', 'CryoSleep', 'Cabin', 'Destination', 'VIP', 'Name'], axis=1, inplace=True","labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","test.drop(columns=['HomePlanet','CryoSleep','Cabin','Destination','VIP','Name'],axis=1,inplace=True)"
+spaceship-titanic-ml.ipynb,Feature Selection,drop,No,"columns='Transported', axis=1","labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","X_train = train.drop(columns='Transported',axis=1)"
+spaceship-titanic-code.ipynb,Feature Selection,drop,No,axis=1,"labels=None, axis=0, index=None, columns=None, level=None, inplace=False, errors='raise'","X = train_df.drop(['PassengerId', 'Name', 'Transported'], axis=1)"
+spaceship-titanic-code.ipynb,Feature Engineering,fillna,Yes,,"value=None, method=None, axis=None, inplace=False, limit=None, downcast=None",df = df.fillna(0)
+spaceship-titanic-code.ipynb,Feature Engineering,LabelEncoder,Yes,,No parameters required for initialization,label_encoders = {col: LabelEncoder().fit(combined_data[col]) for col in label_cols}
+spaceship-titanic-code.ipynb,Feature Addition,Feature Addition,Yes,,N/A,df['HomePlanet'] = df['HomePlanet'].fillna('Earth')
+spaceship-titanic-code.ipynb,Feature Addition,Feature Addition,Yes,,N/A,df['CryoSleep'] = df['CryoSleep'].fillna(False).infer_objects(copy=False)
+spaceship-titanic-code.ipynb,Feature Addition,Feature Addition,Yes,,N/A,df['Cabin'] = df['Cabin'].fillna('Unknown')
+spaceship-titanic-code.ipynb,Feature Addition,Feature Addition,Yes,,N/A,df['Destination'] = df['Destination'].fillna('TRAPPIST-1e')
+spaceship-titanic-code.ipynb,Feature Addition,Feature Addition,Yes,,N/A,df['Age'] = df['Age'].fillna(df['Age'].median())
+spaceship-titanic-code.ipynb,Feature Addition,Feature Addition,Yes,,N/A,df['VIP'] = df['VIP'].fillna(False).infer_objects(copy=False)
+spaceship-titanic-code.ipynb,Feature Addition,Feature Addition,Yes,,N/A,"submission['Transported'] = submission['Transported'].map({1: True, 0: False})"
+spaceship-titanic.ipynb,Feature Engineering,fillna,No,inplace=True,"value=None, method=None, axis=None, inplace=False, limit=None, downcast=None","train_data.fillna(0, inplace=True)  # Replace NaN values with 0 for simplicity"
+spaceship-titanic.ipynb,Feature Engineering,LabelEncoder,Yes,,No parameters required for initialization,le = LabelEncoder()
+spaceship-titanic.ipynb,Feature Engineering,StandardScaler,Yes,,"copy=True, with_mean=True, with_std=True",scaler = StandardScaler()
+spaceship-titanic.ipynb,Feature Addition,Feature Addition,Yes,,N/A,train_data['CryoSleep'] = le.fit_transform(train_data['CryoSleep'])
