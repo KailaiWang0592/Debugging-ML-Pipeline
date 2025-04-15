@@ -1,0 +1,638 @@
+{
+    "StandardScaler": {
+        "copy": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": true
+        },
+        "with_mean": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": true
+        },
+        "with_std": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": true
+        }
+    },
+    "MinMaxScaler": {
+        "feature_range": {
+            "allowed_values": [
+                [
+                    0.0,
+                    1.0
+                ],
+                [
+                    -1.0,
+                    1.0
+                ],
+                [
+                    -100,
+                    100
+                ]
+            ],
+            "range": [
+                "float",
+                "float"
+            ],
+            "default": [
+                0.0,
+                1.0
+            ]
+        },
+        "copy": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": true
+        },
+        "clip": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": false
+        }
+    },
+    "RobustScaler": {
+        "with_centering": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": true
+        },
+        "with_scaling": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": true
+        },
+        "quantile_range": {
+            "type": "tuple_of_numbers",
+            "range": [
+                0.0,
+                100.0
+            ],
+            "default": [
+                25.0,
+                75.0
+            ]
+        },
+        "copy": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": true
+        },
+        "unit_variance": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": false
+        }
+    },
+    "Normalizer": {
+        "norm": {
+            "allowed_values": [
+                "l1",
+                "l2",
+                "max"
+            ],
+            "default": "l2"
+        },
+        "copy": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": true
+        }
+    },
+    "OneHotEncoder": {
+        "categories": {
+            "allowed_values": [
+                "auto",
+                "list"
+            ],
+            "default": "auto"
+        },
+        "drop": {
+            "allowed_values": [
+                null,
+                "first",
+                "if_binary"
+            ],
+            "default": null
+        },
+        "sparse_output": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": true
+        },
+        "dtype": {
+            "allowed_values": [
+                "type"
+            ],
+            "default": "np.float64"
+        },
+        "handle_unknown": {
+            "allowed_values": [
+                "error",
+                "ignore"
+            ],
+            "default": "error"
+        },
+        "min_frequency": {
+            "allowed_values": [
+                null,
+                1,
+                10
+            ],
+            "range": [
+                "int",
+                "float",
+                null
+            ],
+            "default": null
+        },
+        "max_categories": {
+            "allowed_values": [
+                10
+            ],
+            "range": [
+                "int"
+            ],
+            "default": null
+        },
+        "feature_name_combiner": {
+            "allowed_values": [
+                "concat"
+            ],
+            "range": [
+                "concat",
+                "callable"
+            ],
+            "default": "concat",
+            "!!! Kailai's Comment": "I only checked accuracy for everything above thus far"
+        }
+    },
+    "OrdinalEncoder": {
+        "categories": {
+            "allowed_values": [
+                "auto",
+                "list"
+            ],
+            "default": "auto"
+        },
+        "dtype": {
+            "allowed_values": [
+                "type"
+            ],
+            "default": "np.float64"
+        },
+        "handle_unknown": {
+            "allowed_values": [
+                "error",
+                "use_encoded_value"
+            ],
+            "default": "error"
+        },
+        "unknown_value": {
+            "allowed_values": [
+                null,
+                -1,
+                0,
+                1
+            ],
+            "default": null
+        },
+        "encoded_missing_value": {
+            "allowed_values": [
+                "Nan",
+                0
+            ],
+            "default": "NaN"
+        },
+        "min_frequency": {
+            "allowed_values": [
+                null,
+                5
+            ],
+            "default": null
+        },
+        "max_categories": {
+            "allowed_values": [
+                null,
+                10
+            ],
+            "default": null
+        }
+    },
+    "PolynomialFeatures": {
+        "degree": {
+            "allowed_values": [
+                1,
+                10
+            ],
+            "default": 2
+        },
+        "interaction_only": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": false
+        },
+        "include_bias": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": true
+        },
+        "order": {
+            "allowed_values": [
+                "C",
+                "F"
+            ],
+            "default": "C"
+        }
+    },
+    "SimpleImputer": {
+        "strategy": {
+            "allowed_values": [
+                "mean",
+                "median",
+                "most_frequent",
+                "constant"
+            ],
+            "default": "mean"
+        },
+        "fill_value": {
+            "allowed_values": [
+                "string",
+                0
+            ],
+            "range": [
+                "string",
+                "float"
+            ],
+            "default": null
+        },
+        "copy": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": true
+        },
+        "add_indicator": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": false
+        },
+        "keep_empty_features": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": false
+        }
+    },
+    "SelectKBest": {
+        "k": {
+            "allowed_values": [
+                1,
+                10,
+                100
+            ],
+            "default": 10
+        }
+    },
+    "VarianceThreshold": {
+        "threshold": {
+            "allowed_values": [
+                0.0,
+                0.2
+            ],
+            "default": 0.0
+        }
+    },
+    "SelectFromModel": {
+        "threshold": {
+            "allowed_values": [
+                null,
+                "mean",
+                "median",
+                0.0,
+                1.0
+            ],
+            "default": null
+        },
+        "prefit": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": false
+        },
+        "norm_order": {
+            "allowed_values": [
+                1,
+                "inf",
+                "-inf"
+            ],
+            "default": 1
+        },
+        "max_features": {
+            "allowed_values": [
+                null,
+                10,
+                100
+            ],
+            "default": null
+        }
+    },
+    "RFE": {
+        "n_features_to_select": {
+            "allowed_values": [
+                null,
+                1,
+                100
+            ],
+            "default": null
+        },
+        "step": {
+            "allowed_values": [
+                0.3,
+                0.7,
+                1,
+                2
+            ],
+            "default": 1
+        }
+    },
+    "fillna": {
+        "value": {
+            "allowed_values": [
+                null,
+                "scalar",
+                "dict"
+            ],
+            "default": null
+        },
+        "method": {
+            "allowed_values": [
+                null,
+                "ffill",
+                "bfill"
+            ],
+            "default": null
+        },
+        "axis": {
+            "allowed_values": [
+                0,
+                1
+            ],
+            "default": 0
+        },
+        "inplace": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": false
+        },
+        "limit": {
+            "allowed_values": [
+                null,
+                1,
+                100
+            ],
+            "default": null
+        }
+    },
+    "drop": {
+        "labels": {
+            "allowed_values": [
+                null,
+                "list",
+                "array"
+            ],
+            "default": null
+        },
+        "axis": {
+            "allowed_values": [
+                0,
+                1
+            ],
+            "default": 0
+        },
+        "index": {
+            "allowed_values": [
+                null
+            ],
+            "range": [
+                "string",
+                "list"
+            ],
+            "default": null
+        },
+        "columns": {
+            "allowed_values": [
+                null
+            ],
+            "range": [
+                "string",
+                "list"
+            ],
+            "default": null
+        },
+        "level": {
+            "allowed_values": [
+                0
+            ],
+            "range": [
+                "int",
+                "string"
+            ],
+            "default": null
+        },
+        "inplace": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": false
+        }
+    },
+    "dropna": {
+        "axis": {
+            "allowed_values": [
+                0,
+                1
+            ],
+            "default": 0
+        },
+        "how": {
+            "allowed_values": [
+                "any",
+                "all"
+            ],
+            "default": "any"
+        },
+        "thresh": {
+            "allowed_values": [
+                null,
+                1,
+                100
+            ],
+            "default": null
+        },
+        "inplace": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": false
+        },
+        "ignore_index": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": false
+        }
+    },
+    "replace": {
+        "to_replace": {
+            "allowed_values": [
+                null,
+                "scalar",
+                "list",
+                "dict"
+            ],
+            "default": null
+        },
+        "value": {
+            "allowed_values": [
+                null,
+                "scalar",
+                "list",
+                "dict"
+            ],
+            "default": null
+        },
+        "inplace": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": false
+        },
+        "limit": {
+            "allowed_values": [
+                null,
+                1,
+                100
+            ],
+            "default": null,
+            "note": "deprecated"
+        },
+        "regex": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": false
+        },
+        "method": {
+            "allowed_values": [
+                "pad",
+                "ffill",
+                "bfill"
+            ],
+            "default": "no default",
+            "note": "deprecated"
+        }
+    },
+    "map": {
+        "arg": {
+            "allowed_values": [
+                "dict",
+                "function",
+                "Series"
+            ],
+            "default": null
+        },
+        "na_action": {
+            "allowed_values": [
+                null,
+                "ignore"
+            ],
+            "default": null
+        }
+    },
+    "get_dummies": {
+        "prefix": {
+            "allowed_values": [
+                null,
+                "str",
+                "list"
+            ],
+            "default": null
+        },
+        "prefix_sep": {
+            "allowed_values": [
+                "_",
+                ","
+            ],
+            "default": "_"
+        },
+        "dummy_na": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": false
+        },
+        "sparse": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": false
+        },
+        "drop_first": {
+            "allowed_values": [
+                true,
+                false
+            ],
+            "default": false
+        }
+    },
+    "LabelEncoder": {
+        "note": {
+            "allowed_values": [
+                "No parameters required for initialization"
+            ],
+            "default": "No parameters required for initialization"
+        }
+    }
+}
