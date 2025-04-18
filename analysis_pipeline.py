@@ -257,7 +257,7 @@ def analyze_notebook(notebook_path):
                             isinstance(args, dict) and "action" in args):
                         all_params = get_all_parameters(func_name)
 
-                    display_name = func_namey
+                    display_name = func_name
                     if isinstance(args, dict) and "action" in args:
                         display_name = args["action"]
 
