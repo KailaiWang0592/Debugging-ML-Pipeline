@@ -1,0 +1,157 @@
+{
+  "spaceship-titanic::Sequential": {
+    "Original Model": "Sequential",
+    "Original Parameters": {
+      "optimizer": "adam",
+      "metrics": [
+        "accuracy"
+      ]
+    },
+    "Original_accuracy": 0.49511213341000576,
+    "Original_precision": 0.0,
+    "Original_recall": 0.0,
+    "Original_f1": 0.0,
+    "Optimized Parameters": {
+      "learning_rate": 0.2,
+      "epochs": 50,
+      "batch_size": 64
+    },
+    "Optimized_accuracy": 0.49511213341000576,
+    "Optimized_precision": 0.0,
+    "Optimized_recall": 0.0,
+    "Optimized_f1": 0.0
+  },
+  "spaceship-titanic-tensorflow-80::Sequential": {
+    "Original Model": "Sequential",
+    "Original Parameters": {
+      "optimizer": "Adam(0.03)",
+      "metrics": [
+        "Accuracy"
+      ]
+    },
+    "Original_accuracy": 0.5048878665899943,
+    "Original_precision": 0.5048878665899943,
+    "Original_recall": 1.0,
+    "Original_f1": 0.6709973251815056,
+    "Optimized Parameters": {
+      "learning_rate": 0.5,
+      "epochs": 40,
+      "batch_size": 128
+    },
+    "Optimized_accuracy": 0.5048878665899943,
+    "Optimized_precision": 0.5048878665899943,
+    "Optimized_recall": 1.0,
+    "Optimized_f1": 0.6709973251815056
+  },
+  "spaceship-titanic-competition-with-ensemble-models::XGBClassifier": {
+    "Original Model": "XGBClassifier",
+    "Original Parameters": {
+      "null": {
+        "n_estimators": 248,
+        "learning_rate": 0.08276477030425759,
+        "max_depth": 4,
+        "reg_lambda": 9.144307734410582,
+        "subsample": 0.9761017636523421
+      }
+    },
+    "Original_accuracy": 0.7849338700402531,
+    "Original_precision": 0.7896551724137931,
+    "Original_recall": 0.7824601366742597,
+    "Original_f1": 0.7860411899313501,
+    "Optimized Parameters": {
+      "subsample": 1.0,
+      "reg_lambda": 2,
+      "reg_alpha": 0.001,
+      "n_estimators": 500,
+      "min_child_weight": 7,
+      "max_depth": 4,
+      "learning_rate": 0.1,
+      "gamma": 0.01,
+      "colsample_bytree": 1.0
+    },
+    "Optimized_accuracy": 0.7929844738355377,
+    "Optimized_precision": 0.7949886104783599,
+    "Optimized_recall": 0.7949886104783599,
+    "Optimized_f1": 0.7949886104783599
+  },
+  "spaceship-titanic-classification::XGBClassifier": {
+    "Original Model": "XGBClassifier",
+    "Original Parameters": {
+      "learning_rate": 0.1,
+      "max_depth": 4,
+      "n_estimators": 100
+    },
+    "Original_accuracy": 0.8056354226566993,
+    "Original_precision": 0.7890792291220556,
+    "Original_recall": 0.8394077448747153,
+    "Original_f1": 0.8134657836644592,
+    "Optimized Parameters": {
+      "subsample": 0.9,
+      "reg_lambda": 3,
+      "reg_alpha": 0.01,
+      "n_estimators": 600,
+      "min_child_weight": 5,
+      "max_depth": 8,
+      "learning_rate": 0.01,
+      "gamma": 0.3,
+      "colsample_bytree": 0.8
+    },
+    "Optimized_accuracy": 0.8010350776308223,
+    "Optimized_precision": 0.79490022172949,
+    "Optimized_recall": 0.816628701594533,
+    "Optimized_f1": 0.8056179775280898
+  },
+  "spaceship-titanic-code::XGBClassifier": {
+    "Original Model": "XGBClassifier",
+    "Original Parameters": {
+      "n_estimators": 200,
+      "learning_rate": 0.1,
+      "max_depth": 5
+    },
+    "Original_accuracy": 0.7964347326049454,
+    "Original_precision": 0.7917594654788419,
+    "Original_recall": 0.8097949886104784,
+    "Original_f1": 0.8006756756756757,
+    "Optimized Parameters": {
+      "subsample": 0.8,
+      "reg_lambda": 1,
+      "reg_alpha": 0.01,
+      "n_estimators": 800,
+      "min_child_weight": 5,
+      "max_depth": 3,
+      "learning_rate": 0.05,
+      "gamma": 0.05,
+      "colsample_bytree": 0.7
+    },
+    "Optimized_accuracy": 0.7918343875790684,
+    "Optimized_precision": 0.7873051224944321,
+    "Optimized_recall": 0.8052391799544419,
+    "Optimized_f1": 0.7961711711711712
+  },
+  "titanic-machine-learning-from-disaster-challenge::XGBClassifier": {
+    "Original Model": "XGBClassifier",
+    "Original Parameters": {
+      "learning_rate": 0.05,
+      "n_estimators": 500
+    },
+    "Original_accuracy": 0.7918343875790684,
+    "Original_precision": 0.7965517241379311,
+    "Original_recall": 0.7892938496583144,
+    "Original_f1": 0.7929061784897025,
+    "Optimized Parameters": {
+      "subsample": 0.8,
+      "reg_lambda": 2,
+      "reg_alpha": 0.1,
+      "n_estimators": 1000,
+      "min_child_weight": 5,
+      "max_depth": 10,
+      "learning_rate": 0.005,
+      "gamma": 0.1,
+      "colsample_bytree": 0.9
+    },
+    "Optimized_accuracy": 0.7993099482461185,
+    "Optimized_precision": 0.7955307262569833,
+    "Optimized_recall": 0.8109339407744874,
+    "Optimized_f1": 0.8031584884376762
+  }
+}
