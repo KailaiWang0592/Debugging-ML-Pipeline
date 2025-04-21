@@ -472,13 +472,54 @@ class ParameterOptimizer:
         
         else:
             return str(value)
+
+    def _inject_metric_instrumentation(self, notebook):
+        modified_nb = deepcopy(notebook)
+        
+        metric_functions = [
+            'mean_squared_error', 'mean_absolute_error', 'r2_score', 
+            'accuracy_score', 'precision_score', 'recall_score', 'f1_score'
+        ]
+        
+        for cell in modified_nb.cells:
+            if cell.cell_type != 'code':
+                continue
+            
+            for func in metric_functions:
+                pattern = rf'({func}\([^)]+\))'
+            
+                replacement = rf'\1\nprint("METRIC_LOG: {func} =", \1)'
+                
+                cell.source = re.sub(pattern, replacement, cell.source)
+        
+            score_pattern = r'(([A-Za-z0-9_]+)\.score\([^)]+\))'
+            score_replacement = r'\1\nprint("METRIC_LOG: \2_score =", \1)'
+            cell.source = re.sub(score_pattern, score_replacement, cell.source)
+            
+            if 'history' in cell.source and '.history' in cell.source:
+                history_instrumentation = "\n# Instrumentation for TensorFlow metrics\n"
+                history_instrumentation += "if 'history' in locals() and hasattr(history, 'history'):\n"
+                history_instrumentation += "    for metric in history.history:\n"
+                history_instrumentation += "        print(f\"METRIC_LOG: tf_{metric} = {history.history[metric][-1]}\")\n"
+                cell.source += history_instrumentation
+        
+        return modified_nb
     
     def _execute_notebook(self, notebook_path):
         try:
+            with open(notebook_path, 'r', encoding='utf-8') as f:
+                nb = nbformat.read(f, as_version=4)
+            
+            instrumented_nb = self._inject_metric_instrumentation(nb)
+            
+            instrumented_path = f"{os.path.splitext(notebook_path)[0]}_instrumented.ipynb"
+            with open(instrumented_path, 'w', encoding='utf-8') as f:
+                nbformat.write(instrumented_nb, f)
+            
             result = subprocess.run(
                 ['jupyter', 'nbconvert', '--to', 'notebook', '--execute', 
-                 '--output', f"{os.path.basename(notebook_path)}", 
-                 notebook_path],
+                '--output', f"{os.path.basename(instrumented_path)}", 
+                instrumented_path],
                 capture_output=True,
                 text=True
             )
@@ -487,12 +528,10 @@ class ParameterOptimizer:
                 print(f"Warning: Error executing notebook: {result.stderr}")
                 return {'error': result.stderr}
             
-            with open(notebook_path, 'r', encoding='utf-8') as f:
+            with open(instrumented_path, 'r', encoding='utf-8') as f:
                 executed_nb = nbformat.read(f, as_version=4)
             
-            metrics = self._extract_metrics_from_notebook(executed_nb)
-            print("here")
-            print(metrics)
+            metrics = self._extract_metrics_from_instrumented_logs(executed_nb)
             
             return metrics
         except Exception as e:
@@ -728,6 +767,159 @@ class ParameterOptimizer:
             traceback.print_exc()
         
         return None
+
+    def _extract_metrics_from_instrumented_logs(self, nb):
+        metrics = {
+            'mse': None,
+            'rmse': None,
+            'r2': None,
+            'mae': None,
+            'accuracy': None,
+            'precision': None,
+            'recall': None,
+            'f1': None,
+            'best_model': 'unknown'
+        }
+        
+        metrics_by_model = {}
+        
+        for cell in nb.cells:
+            if cell.cell_type != 'code' or 'outputs' not in cell:
+                continue
+            
+            for output in cell.outputs:
+                if 'text' not in output:
+                    continue
+                
+                text = output['text']
+
+                log_entries = re.findall(r'METRIC_LOG: ([^=]+) = ([^(\n]+)', text)
+                
+                for metric_name, metric_value in log_entries:
+                    metric_name = metric_name.strip()
+                    
+                    try:
+                        metric_value = eval(metric_value.strip())
+                        model_name = 'model'
+                        model_metric_match = re.match(r'([a-zA-Z0-9_]+)_([a-zA-Z0-9_]+)', metric_name)
+                        if model_metric_match:
+                            potential_model, potential_metric = model_metric_match.groups()
+                            if potential_metric in ['accuracy', 'precision', 'recall', 'f1', 'mse', 'rmse', 'r2', 'mae']:
+                                model_name = potential_model
+                                metric_name = potential_metric
+
+                        if model_name not in metrics_by_model:
+                            metrics_by_model[model_name] = {}
+                        
+                        if "mean_squared_error" in metric_name:
+                            metrics['mse'] = float(metric_value)
+                            metrics['rmse'] = float(np.sqrt(metric_value))
+                            metrics_by_model[model_name]['mse'] = float(metric_value)
+                            metrics_by_model[model_name]['rmse'] = float(np.sqrt(metric_value))
+                        
+                        elif "mean_absolute_error" in metric_name:
+                            metrics['mae'] = float(metric_value)
+                            metrics_by_model[model_name]['mae'] = float(metric_value)
+                        
+                        elif "r2_score" in metric_name:
+                            metrics['r2'] = float(metric_value)
+                            metrics_by_model[model_name]['r2'] = float(metric_value)
+                        
+                        elif "accuracy_score" in metric_name:
+                            metrics['accuracy'] = float(metric_value)
+                            metrics_by_model[model_name]['accuracy'] = float(metric_value)
+                        
+                        elif "precision_score" in metric_name:
+                            metrics['precision'] = float(metric_value)
+                            metrics_by_model[model_name]['precision'] = float(metric_value)
+                        
+                        elif "recall_score" in metric_name:
+                            metrics['recall'] = float(metric_value)
+                            metrics_by_model[model_name]['recall'] = float(metric_value)
+                        
+                        elif "f1_score" in metric_name:
+                            metrics['f1'] = float(metric_value)
+                            metrics_by_model[model_name]['f1'] = float(metric_value)
+                        
+                        elif metric_name.startswith("tf_"):
+                            metric_type = metric_name[3:]
+                            if "accuracy" in metric_type or "acc" in metric_type:
+                                if "val_" not in metric_type:
+                                    metrics['accuracy'] = float(metric_value)
+                                    if 'tensorflow' not in metrics_by_model:
+                                        metrics_by_model['tensorflow'] = {}
+                                    metrics_by_model['tensorflow']['accuracy'] = float(metric_value)
+                                    metrics['best_model'] = 'tensorflow'
+                        
+                        elif "_score" in metric_name:
+                            model_name = metric_name.split("_score")[0]
+                            if model_name not in metrics_by_model:
+                                metrics_by_model[model_name] = {}
+                            
+                            if "accuracy" in metric_name:
+                                metrics_by_model[model_name]['accuracy'] = float(metric_value)
+                            else:
+                                metrics_by_model[model_name]['r2'] = float(metric_value)
+                        
+                        elif metric_name in ['accuracy', 'precision', 'recall', 'f1', 'mse', 'rmse', 'r2', 'mae']:
+                            metrics[metric_name] = float(metric_value)
+                            metrics_by_model[model_name][metric_name] = float(metric_value)
+                    
+                    except (ValueError, SyntaxError) as e:
+                        print(f"Couldn't parse metric value: {metric_value}, Error: {e}")
+        
+        if metrics_by_model:
+            is_classification = any('accuracy' in model_metrics or 'f1' in model_metrics 
+                                    for model_metrics in metrics_by_model.values())
+            
+            best_model = None
+            best_metric = None
+            
+            if is_classification:
+                for model, model_metrics in metrics_by_model.items():
+                    if 'f1' in model_metrics:
+                        current_metric = model_metrics['f1']
+                        if best_metric is None or current_metric > best_metric:
+                            best_metric = current_metric
+                            best_model = model
+                    elif 'accuracy' in model_metrics:
+                        current_metric = model_metrics['accuracy']
+                        if best_metric is None or current_metric > best_metric:
+                            best_metric = current_metric
+                            best_model = model
+            else:
+                for model, model_metrics in metrics_by_model.items():
+                    if 'r2' in model_metrics:
+                        current_metric = model_metrics['r2']
+                        if best_metric is None or current_metric > best_metric:
+                            best_metric = current_metric
+                            best_model = model
+                    elif 'mse' in model_metrics:
+                        current_metric = -model_metrics['mse']
+                        if best_metric is None or current_metric > best_metric:
+                            best_metric = current_metric
+                            best_model = model
+                    elif 'rmse' in model_metrics:
+                        current_metric = -model_metrics['rmse']
+                        if best_metric is None or current_metric > best_metric:
+                            best_metric = current_metric
+                            best_model = model
+                    elif 'mae' in model_metrics:
+                        current_metric = -model_metrics['mae']
+                        if best_metric is None or current_metric > best_metric:
+                            best_metric = current_metric
+                            best_model = model
+            
+            if best_model:
+                metrics['best_model'] = best_model
+                for metric_name in ['mse', 'rmse', 'r2', 'mae', 'accuracy', 'precision', 'recall', 'f1']:
+                    if metric_name in metrics_by_model[best_model]:
+                        metrics[metric_name] = metrics_by_model[best_model][metric_name]
+        
+        if metrics['mse'] is not None and metrics['rmse'] is None:
+            metrics['rmse'] = np.sqrt(metrics['mse'])
+        
+        return metrics
     
     def _extract_values_from_outputs(self, outputs, metrics_by_model):
         for output in outputs:
