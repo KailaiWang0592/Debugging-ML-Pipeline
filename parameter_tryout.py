@@ -183,6 +183,8 @@ scoring_mapping = {
     "f1_score":       "f1",
     "precision_score":"precision",
     "recall_score":   "recall",
+    "classification_report": "classification_report",
+    "score":                 "score",
 }
 
 
@@ -314,10 +316,12 @@ def optimize_model(
                         orig_est = eval(mtype)(**orig_kw).fit(X_train, y_train)
                     y0 = orig_est.predict(X_val)
 
-                orig_acc  = accuracy_score(y_val, y0)
-                orig_prec = precision_score(y_val, y0, zero_division=0)
-                orig_rec  = recall_score(y_val, y0, zero_division=0)
-                orig_f1   = f1_score(y_val, y0, zero_division=0)
+                if score_m == "classification_report":
+                    orig_report = classification_report(y_val, y0, output_dict=True)
+                orig_acc   = accuracy_score(y_val, y0)
+                orig_prec  = precision_score(y_val, y0, zero_division=0)
+                orig_rec   = recall_score(y_val, y0, zero_division=0)
+                orig_f1    = f1_score(y_val, y0, zero_division=0)
 
             except Exception as e:
                 tqdm.write(f"⚠️ {stem}::{mtype} original rebuild failed → {e}")
@@ -338,11 +342,19 @@ def optimize_model(
                 estimator = xgb.XGBClassifier() if mtype=="XGBClassifier" else eval(mtype)()
 
             if grid:
-                search = RandomizedSearchCV(
+                if scoring in ("classification_report","score") or scoring is None:
+                    # fall back to default estimator.score()
+                    search = RandomizedSearchCV(
+                    estimator, grid,
+                    n_iter=10, cv=cv_folds,
+                    n_jobs=-1, refit=True
+                    )
+                else:
+                    search = RandomizedSearchCV(
                     estimator, grid,
                     n_iter=10, cv=cv_folds,
                     scoring=scoring, n_jobs=-1, refit=True
-                )
+                    )
                 search.fit(X_train, y_train)
                 best_params = search.best_params_
                 best_est    = search.best_estimator_
@@ -371,6 +383,8 @@ def optimize_model(
                 "optimized_based_on":   scoring
 
             }
+            if score_m == "classification_report":
+                optimized[key]["Original_report"] = orig_report
             best_rows.append({
                 "notebook":      stem,
                 "model":         mtype,
