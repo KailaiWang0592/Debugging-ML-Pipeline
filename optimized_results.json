@@ -1,0 +1,323 @@
+{
+  "spaceship-titanic::Sequential": {
+    "Original Model": "Sequential",
+    "Original Parameters": {
+      "optimizer": "adam",
+      "metrics": [
+        "accuracy"
+      ]
+    },
+    "Original_accuracy": 0.5048878665899943,
+    "Original_precision": 0.5048878665899943,
+    "Original_recall": 1.0,
+    "Original_f1": 0.6709973251815056,
+    "Optimized Parameters": {
+      "learning_rate": 0.0005,
+      "epochs": 90,
+      "batch_size": 64
+    },
+    "Optimized_accuracy": 0.5048878665899943,
+    "Optimized_precision": 0.5048878665899943,
+    "Optimized_recall": 1.0,
+    "Optimized_f1": 0.6709973251815056,
+    "optimized_based_on": "accuracy"
+  },
+  "spaceship-titanic-tensorflow-80::Sequential": {
+    "Original Model": "Sequential",
+    "Original Parameters": {
+      "optimizer": "Adam(0.03)",
+      "metrics": [
+        "Accuracy"
+      ]
+    },
+    "Original_accuracy": 0.5048878665899943,
+    "Original_precision": 0.5048878665899943,
+    "Original_recall": 1.0,
+    "Original_f1": 0.6709973251815056,
+    "Optimized Parameters": {
+      "learning_rate": 0.0005,
+      "epochs": 30,
+      "batch_size": 16
+    },
+    "Optimized_accuracy": 0.5048878665899943,
+    "Optimized_precision": 0.5048878665899943,
+    "Optimized_recall": 1.0,
+    "Optimized_f1": 0.6709973251815056,
+    "optimized_based_on": "accuracy"
+  },
+  "spaceship-titanic-with-randomforestclassifier::RandomForestClassifier": {
+    "Original Model": "RandomForestClassifier",
+    "Original Parameters": {
+      "n_estimators": 100,
+      "random_state": 42
+    },
+    "Original_accuracy": 0.780333525014376,
+    "Original_precision": 0.7837528604118993,
+    "Original_recall": 0.7801822323462415,
+    "Original_f1": 0.7819634703196348,
+    "Optimized Parameters": {
+      "n_estimators": 50,
+      "min_samples_split": 9,
+      "min_samples_leaf": 9,
+      "max_features": 0.4,
+      "max_depth": 15
+    },
+    "Optimized_accuracy": 0.7935595169637722,
+    "Optimized_precision": 0.7717277486910995,
+    "Optimized_recall": 0.8394077448747153,
+    "Optimized_f1": 0.8041462084015275,
+    "optimized_based_on": "accuracy"
+  },
+  "spaceship-titanic-competition-with-ensemble-models::XGBClassifier": {
+    "Original Model": "XGBClassifier",
+    "Original Parameters": {
+      "null": {
+        "n_estimators": 248,
+        "learning_rate": 0.08276477030425759,
+        "max_depth": 4,
+        "reg_lambda": 9.144307734410582,
+        "subsample": 0.9761017636523421
+      }
+    },
+    "Original_accuracy": 0.78205865439908,
+    "Original_precision": 0.7844925883694412,
+    "Original_recall": 0.7835990888382688,
+    "Original_f1": 0.784045584045584,
+    "Optimized Parameters": {
+      "subsample": 0.5,
+      "reg_lambda": 1.5,
+      "reg_alpha": 0.1,
+      "n_estimators": 200,
+      "min_child_weight": 1,
+      "max_depth": 5,
+      "learning_rate": 0.05,
+      "gamma": 0,
+      "colsample_bytree": 0.5
+    },
+    "Optimized_accuracy": 0.7981598619896493,
+    "Optimized_precision": 0.7812166488794023,
+    "Optimized_recall": 0.8337129840546698,
+    "Optimized_f1": 0.8066115702479338,
+    "optimized_based_on": "accuracy"
+  },
+  "spaceship-titanic-classification::XGBClassifier": {
+    "Original Model": "XGBClassifier",
+    "Original Parameters": {
+      "learning_rate": 0.1,
+      "max_depth": 4,
+      "n_estimators": 100
+    },
+    "Original_accuracy": 0.8033352501437608,
+    "Original_precision": 0.7838983050847458,
+    "Original_recall": 0.8428246013667426,
+    "Original_f1": 0.8122941822173436,
+    "Optimized Parameters": {
+      "subsample": 1.0,
+      "reg_lambda": 1.5,
+      "reg_alpha": 0,
+      "n_estimators": 400,
+      "min_child_weight": 7,
+      "max_depth": 7,
+      "learning_rate": 0.01,
+      "gamma": 0.01,
+      "colsample_bytree": 0.9
+    },
+    "Optimized_accuracy": 0.8021851638872916,
+    "Optimized_precision": 0.788961038961039,
+    "Optimized_recall": 0.8302961275626424,
+    "Optimized_f1": 0.8091009988901221,
+    "optimized_based_on": "accuracy"
+  },
+  "spaceship-titanic-code::XGBClassifier": {
+    "Original Model": "XGBClassifier",
+    "Original Parameters": {
+      "n_estimators": 200,
+      "learning_rate": 0.1,
+      "max_depth": 5
+    },
+    "Original_accuracy": 0.8004600345025877,
+    "Original_precision": 0.7973124300111982,
+    "Original_recall": 0.8109339407744874,
+    "Original_f1": 0.8040654997176736,
+    "Optimized Parameters": {
+      "subsample": 0.9,
+      "reg_lambda": 2,
+      "reg_alpha": 0.1,
+      "n_estimators": 100,
+      "min_child_weight": 5,
+      "max_depth": 5,
+      "learning_rate": 0.05,
+      "gamma": 0.01,
+      "colsample_bytree": 0.7
+    },
+    "Optimized_accuracy": 0.7952846463484762,
+    "Optimized_precision": 0.7770700636942676,
+    "Optimized_recall": 0.8337129840546698,
+    "Optimized_f1": 0.8043956043956044,
+    "optimized_based_on": "accuracy"
+  },
+  "spaceship-titanic-ml::KNeighborsClassifier": {
+    "Original Model": "KNeighborsClassifier",
+    "Original Parameters": {
+      "n_neighbors": 2
+    },
+    "Original_accuracy": 0.7297297297297297,
+    "Original_precision": 0.8119266055045872,
+    "Original_recall": 0.6047835990888383,
+    "Original_f1": 0.6932114882506527,
+    "Optimized Parameters": {
+      "weights": "uniform",
+      "p": 2,
+      "n_neighbors": 7
+    },
+    "Optimized_accuracy": 0.7550316273720529,
+    "Optimized_precision": 0.7349272349272349,
+    "Optimized_recall": 0.8052391799544419,
+    "Optimized_f1": 0.7684782608695652,
+    "optimized_based_on": "accuracy"
+  },
+  "spaceship-titanic-ml::RandomForestClassifier": {
+    "Original Model": "RandomForestClassifier",
+    "Original Parameters": {},
+    "Original_accuracy": 0.7826336975273146,
+    "Original_precision": 0.7828054298642534,
+    "Original_recall": 0.7881548974943052,
+    "Original_f1": 0.7854710556186152,
+    "Optimized Parameters": {
+      "n_estimators": 400,
+      "min_samples_split": 15,
+      "min_samples_leaf": 2,
+      "max_features": "sqrt",
+      "max_depth": 15
+    },
+    "Optimized_accuracy": 0.7935595169637722,
+    "Optimized_precision": 0.7734457323498419,
+    "Optimized_recall": 0.835990888382688,
+    "Optimized_f1": 0.8035030103995622,
+    "optimized_based_on": "accuracy"
+  },
+  "titanic-machine-learning-from-disaster-challenge::XGBClassifier": {
+    "Original Model": "XGBClassifier",
+    "Original Parameters": {
+      "learning_rate": 0.05,
+      "n_estimators": 500
+    },
+    "Original_accuracy": 0.7941345600920069,
+    "Original_precision": 0.7927927927927928,
+    "Original_recall": 0.8018223234624146,
+    "Original_f1": 0.797281993204983,
+    "Optimized Parameters": {
+      "subsample": 0.9,
+      "reg_lambda": 3,
+      "reg_alpha": 0.01,
+      "n_estimators": 600,
+      "min_child_weight": 7,
+      "max_depth": 10,
+      "learning_rate": 0.01,
+      "gamma": 0.3,
+      "colsample_bytree": 0.7
+    },
+    "Optimized_accuracy": 0.7993099482461185,
+    "Optimized_precision": 0.7929125138427464,
+    "Optimized_recall": 0.8154897494305239,
+    "Optimized_f1": 0.8040426726558113,
+    "optimized_based_on": "accuracy"
+  },
+  "titanic-machine-learning-from-disaster-challenge::SVC": {
+    "Original Model": "SVC",
+    "Original Parameters": {
+      "C": 5,
+      "probability": true
+    },
+    "Original_accuracy": 0.7688326624496837,
+    "Original_precision": 0.7224299065420561,
+    "Original_recall": 0.8804100227790432,
+    "Original_f1": 0.7936344969199178,
+    "Optimized Parameters": {
+      "kernel": "linear",
+      "gamma": "scale",
+      "degree": 8,
+      "coef0": 0.5,
+      "C": 0.1
+    },
+    "Optimized_accuracy": 0.7757331799884991,
+    "Optimized_precision": 0.7573839662447257,
+    "Optimized_recall": 0.8177676537585421,
+    "Optimized_f1": 0.7864184008762322,
+    "optimized_based_on": "accuracy"
+  },
+  "titanic-passenger-survival-prediction::RandomForestClassifier": {
+    "Original Model": "RandomForestClassifier",
+    "Original Parameters": {
+      "random_state": 42
+    },
+    "Original_accuracy": 0.780333525014376,
+    "Original_precision": 0.7837528604118993,
+    "Original_recall": 0.7801822323462415,
+    "Original_f1": 0.7819634703196348,
+    "Optimized Parameters": {
+      "n_estimators": 500,
+      "min_samples_split": 7,
+      "min_samples_leaf": 10,
+      "max_features": 0.4,
+      "max_depth": 15
+    },
+    "Optimized_accuracy": 0.78953421506613,
+    "Optimized_precision": 0.7683438155136268,
+    "Optimized_recall": 0.8348519362186788,
+    "Optimized_f1": 0.8002183406113537,
+    "optimized_based_on": "accuracy"
+  },
+  "titanic-prediction-using-logistic-regression::LogisticRegression": {
+    "Original Model": "LogisticRegression",
+    "Original Parameters": {},
+    "Original_accuracy": 0.7699827487061529,
+    "Original_precision": 0.7463917525773196,
+    "Original_recall": 0.8246013667425968,
+    "Original_f1": 0.7835497835497836,
+    "Optimized Parameters": {
+      "solver": "liblinear",
+      "penalty": "l2",
+      "l1_ratio": 0.4,
+      "C": 0.5
+    },
+    "Optimized_accuracy": 0.7705577918343876,
+    "Optimized_precision": 0.7539766702014846,
+    "Optimized_recall": 0.8097949886104784,
+    "Optimized_f1": 0.7808896210873146,
+    "optimized_based_on": "accuracy"
+  },
+  "titanic-spaceship-survival::LGBMClassifier": {
+    "Original Model": "LGBMClassifier",
+    "Original Parameters": {},
+    "Original_accuracy": 0.7964347326049454,
+    "Original_precision": 0.7860262008733624,
+    "Original_recall": 0.8200455580865603,
+    "Original_f1": 0.802675585284281,
+    "Optimized Parameters": {},
+    "Optimized_accuracy": 0.7964347326049454,
+    "Optimized_precision": 0.7860262008733624,
+    "Optimized_recall": 0.8200455580865603,
+    "Optimized_f1": 0.802675585284281,
+    "optimized_based_on": "accuracy"
+  },
+  "titanic::LogisticRegression": {
+    "Original Model": "LogisticRegression",
+    "Original Parameters": {},
+    "Original_accuracy": 0.7699827487061529,
+    "Original_precision": 0.7463917525773196,
+    "Original_recall": 0.8246013667425968,
+    "Original_f1": 0.7835497835497836,
+    "Optimized Parameters": {
+      "solver": "liblinear",
+      "penalty": "l1",
+      "l1_ratio": 0,
+      "C": 2
+    },
+    "Optimized_accuracy": 0.7694077055779184,
+    "Optimized_precision": 0.7539936102236422,
+    "Optimized_recall": 0.806378132118451,
+    "Optimized_f1": 0.779306549257017,
+    "optimized_based_on": "accuracy"
+  }
+}
