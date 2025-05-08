@@ -265,18 +265,7 @@ def process_notebook(file_path: str) -> Dict[str, Any]:
 
 def main():
     notebook_files = [
-        "notebooks/spaceship-titanic.ipynb",
-        "notebooks/spaceship-titanic-tensorflow-80.ipynb",
-        "notebooks/spaceship-titanic-with-randomforestclassifier.ipynb",
-        "notebooks/spaceship-titanic-competition-with-ensemble-models.ipynb",
-        "notebooks/spaceship-titanic-classification.ipynb",
-        "notebooks/spaceship-titanic-code.ipynb",
-        "notebooks/spaceship-titanic-ml.ipynb",
-        "notebooks/titanic-machine-learning-from-disaster-challenge.ipynb",
-        "notebooks/titanic-passenger-survival-prediction.ipynb",
-        "notebooks/titanic-prediction-using-logistic-regression.ipynb",
-        "notebooks/titanic-spaceship-survival.ipynb",
-        "notebooks/titanic.ipynb",
+       "spaceship-titanic-with-randomforestclassifier.ipynb"
     ]
     results = []
     for nb_file in notebook_files:
