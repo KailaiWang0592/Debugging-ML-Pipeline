@@ -6,6 +6,10 @@ import csv
 import os
 import inspect
 
+
+# environment has sklearn = 1.6.1; pandas = 2.2.3
+
+
 # For demonstration, we import some common scikit-learn classes:
 # (You can add or remove imports based on your needs)
 try:
